@@ -11,6 +11,11 @@ var indexController = {
     res.render('index', {
       user: req.user
     });
+  },
+  ridelist: function(req, res){
+    res.render('/ridelist', {
+    
+    });
   }
 };
 

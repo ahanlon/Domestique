@@ -1,10 +1,7 @@
-extends layout
+//- Display the list of rides returned from the strava api call
+h1 Here are the rides you requested:
 
-block content
-	//- Display the list of rides returned from the strava api call
-	h1 Here are the rides you requested:
+a(href="https://www.strava.com/api/v3/athletes/:id") Get athletes
 
-	a(href="https://www.strava.com/api/v3/activities/:id") Get rides
-
-	//- did we get something back
-	div 
+//- did we get something back
+div {{payload}}

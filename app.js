@@ -66,6 +66,9 @@ app.use(passport.session());
 // Our get request for viewing the login page
 app.get('/auth/login', authenticationController.login);
 
+// Get request for viewing the ridelist page
+app.get('auth/ridelist', indexController.ridelist);
+
 // Post received from submitting the login form
 app.post('/auth/login', authenticationController.processLogin);
 
@@ -74,6 +77,8 @@ app.post('/auth/signup', authenticationController.processSignup);
 
 // Any requests to log out can be handled at this url
 app.get('/auth/logout', authenticationController.logout);
+
+
 
 // ***** IMPORTANT ***** //
 // By including this middleware (defined in our config/passport.js module.exports),
@@ -85,17 +90,15 @@ app.use(passportConfig.ensureAuthenticated);
 // authentication before access is allowed.
 app.get('/', indexController.index);
 
-// Here is the request to pull activities data from STRAVA
-strava.athletes.get('https://www.strava.com/api/v3/activities/:id', function(err,payload) {
-
-    if (!err) {
-        //console.log(payload);
-        res.render('ridelist');
+// Here is the request to pull athlete data from STRAVA
+strava.athletes.get({id:604900},function($scope,err,payload) {
+    if(!err) {
+        console.log(payload);
+        var payload = $scope.payload;
     }
     else {
         console.log(err);
     }
-
 });
 
 

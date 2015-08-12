@@ -81,7 +81,7 @@ var authenticationController = {
   // create the new user and rely on mongoose to throw any duplication errors.
   // If none are found, the user is successfully added to the DB, it is safe to
   // assume that they are ready to log in, so we do that as well.
-  processSignup: function(req, res, next){
+  processSignup: function(userFactory,req, res, next){
 
     // Create a new instance of the User model with the data passed to this
     // handler. By using "param," we can safely assume that this route will
@@ -93,6 +93,7 @@ var authenticationController = {
       password: req.body.password,
       email: req.body.email
     });
+
 
     // Now that the user is created, we'll attempt to save them to the
     // database.
